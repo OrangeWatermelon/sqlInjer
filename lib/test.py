@@ -1,6 +1,6 @@
 # from lib.reqtest import reqtest
 from lib.payloads import pd
-from lib.core.attrDict import var
+from lib.attrDict import var
 import config
 import requests
 import string

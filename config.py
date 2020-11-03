@@ -12,5 +12,5 @@ def right(freq,req):
     html = req.text
     return fhtml != html
 def tright(freq,req):
-    req.elapsed.total_seconds() > 5
-rightf = right
+    return req.elapsed.total_seconds() > time
+rightf = tright

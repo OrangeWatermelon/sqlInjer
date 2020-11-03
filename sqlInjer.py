@@ -1,5 +1,5 @@
 import config
-from lib.core.attrDict import var
+from lib.attrDict import var
 from lib.test import test
 
 var.METHOD = config.method
