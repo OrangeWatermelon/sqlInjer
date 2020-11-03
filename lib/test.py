@@ -30,52 +30,82 @@ class test:
                     if var.RIGHTF(self.freq, req):
                         return charset[r]
                     else:
-                        return -1
+                        return '\0'
             mid = l+(r-l)//2
             req = self.req(payloadcmp.format(ord(charset[mid])))
             if var.RIGHTF(self.freq, req):
                 return DBn(l,mid)
             else:
                 return DBn(mid,r)
-        return DBn(0,len(charset))
+        return DBn(0,len(charset)-1)
     def CurDB(self):
-        self.freq = self.req(pd.plength.format(pl=pd.curdb,tj='<0#'))
-        dbn = ord(self.binpart(pd.plength.format(pl=pd.curdb,tj='<{}#'),pd.plength.format(pl=pd.curdb,tj='={}#'),range(100)))
+        if config.type == 'boolen':
+            length = pd.plength
+            ascii = pd.pascii
+        else:
+            length = pd.tplength
+            ascii = pd.tpascii
+        self.freq = self.req(length.format(pl=pd.curdb,tj='<0',end='#'))
+        dbn = ord(self.binpart(length.format(pl=pd.curdb,tj='<{}',end='#'),length.format(pl=pd.curdb,tj='={}',end='#'),range(100)))
         dbname = ''
         for n in range(1,dbn+1):
-            a = pd.pascii.format(pl=pd.curdb,tj='<{}#',n=n)
-            ch = self.binpart(pd.pascii.format(pl=pd.curdb,tj='<{}#',n=n),pd.pascii.format(pl=pd.curdb,tj='={}#',n=n),string.printable)
+            a = ascii.format(pl=pd.curdb,tj='<{}',end='#',n=n)
+            ch = self.binpart(ascii.format(pl=pd.curdb,tj='<{}',end='#',n=n),ascii.format(pl=pd.curdb,tj='={}',end='#',n=n),string.printable)
             dbname += ch
         return dbname
     def DBs(self):
-        self.freq = self.req(pd.plength.format(pl=pd.dbs,tj='<0#'))
-        dbn = ord(self.binpart(pd.plength.format(pl=pd.dbs,tj='<{}#'), pd.plength.format(pl=pd.dbs,tj='={}#'), range(100)))
+        if config.type == 'boolen':
+            length = pd.plength
+            ascii = pd.pascii
+        else:
+            length = pd.tplength
+            ascii = pd.tpascii
+        self.freq = self.req(length.format(pl=pd.dbs,tj='<0',end='#'))
+        dbn = ord(self.binpart(length.format(pl=pd.dbs,tj='<{}',end='#'), length.format(pl=pd.dbs,tj='={}',end='#'), range(100)))
         dbname = ''
         for n in range(1, dbn + 1):
-            ch = self.binpart(pd.pascii.format(pl=pd.dbs,tj='<{}#',n=n),pd.pascii.format(pl=pd.dbs,tj='={}#',n=n), string.printable)
+            ch = self.binpart(ascii.format(pl=pd.dbs,tj='<{}',end='#',n=n),ascii.format(pl=pd.dbs,tj='={}',end='#',n=n), string.printable)
             dbname += ch
         return dbname
     def TBs(self,db):
-        self.freq = self.req(pd.plength.format(pl=pd.tbs.format(db=db),tj='<0#'))
-        tbn = ord(self.binpart(pd.plength.format(pl=pd.tbs.format(db=db),tj='<{}#'), pd.plength.format(pl=pd.tbs.format(db=db),tj='={}#'), range(100)))
+        if config.type == 'boolen':
+            length = pd.plength
+            ascii = pd.pascii
+        else:
+            length = pd.tplength
+            ascii = pd.tpascii
+        self.freq = self.req(length.format(pl=pd.tbs.format(db=db),tj='<0',end='#'))
+        tbn = ord(self.binpart(length.format(pl=pd.tbs.format(db=db),tj='<{}',end='#'), length.format(pl=pd.tbs.format(db=db),tj='={}',end='#'), range(100)))
         tbname = ''
         for n in range(1, tbn + 1):
-            ch = self.binpart(pd.pascii.format(pl=pd.tbs.format(db=db),tj='<{}#',n=n),pd.pascii.format(pl=pd.tbs.format(db=db),tj='={}#',n=n), string.printable)
+            ch = self.binpart(ascii.format(pl=pd.tbs.format(db=db),tj='<{}',end='#',n=n),ascii.format(pl=pd.tbs.format(db=db),tj='={}',end='#',n=n), string.printable)
             tbname += ch
         return tbname
     def CBs(self,db,tb):
-        self.freq = self.req(pd.plength.format(pl=pd.cbs.format(db=db,tb=tb),tj='<0#'))
-        tbn = ord(self.binpart(pd.plength.format(pl=pd.cbs.format(db=db,tb=tb),tj='<{}#'), pd.plength.format(pl=pd.cbs.format(db=db,tb=tb),tj='={}#'), range(100)))
+        if config.type == 'boolen':
+            length = pd.plength
+            ascii = pd.pascii
+        else:
+            length = pd.tplength
+            ascii = pd.tpascii
+        self.freq = self.req(length.format(pl=pd.cbs.format(db=db,tb=tb),tj='<0',end='#'))
+        tbn = ord(self.binpart(length.format(pl=pd.cbs.format(db=db,tb=tb),tj='<{}',end='#'), length.format(pl=pd.cbs.format(db=db,tb=tb),tj='={}',end='#'), range(100)))
         tbname = ''
         for n in range(1, tbn + 1):
-            ch = self.binpart(pd.pascii.format(pl=pd.cbs.format(db=db,tb=tb),tj='<{}#',n=n),pd.pascii.format(pl=pd.cbs.format(db=db,tb=tb),tj='={}#',n=n), string.printable)
+            ch = self.binpart(ascii.format(pl=pd.cbs.format(db=db,tb=tb),tj='<{}',end='#',n=n),ascii.format(pl=pd.cbs.format(db=db,tb=tb),tj='={}',end='#',n=n), string.printable)
             tbname += ch
         return tbname
     def Ds(self,db,tb,cb):
-        self.freq = self.req(pd.plength.format(pl=pd.ds.format(db=db,tb=tb,cb=cb),tj='<0#'))
-        tbn = ord(self.binpart(pd.plength.format(pl=pd.ds.format(db=db,tb=tb,cb=cb),tj='<{}#'), pd.plength.format(pl=pd.ds.format(db=db,tb=tb,cb=cb),tj='={}#'), range(100)))
+        if config.type == 'boolen':
+            length = pd.plength
+            ascii = pd.pascii
+        else:
+            length = pd.tplength
+            ascii = pd.tpascii
+        self.freq = self.req(length.format(pl=pd.ds.format(db=db,tb=tb,cb=cb),tj='<0',end='#'))
+        tbn = ord(self.binpart(length.format(pl=pd.ds.format(db=db,tb=tb,cb=cb),tj='<{}',end='#'), length.format(pl=pd.ds.format(db=db,tb=tb,cb=cb),tj='={}',end='#'), range(100)))
         tbname = ''
         for n in range(1, tbn + 1):
-            ch = self.binpart(pd.pascii.format(pl=pd.ds.format(db=db,tb=tb,cb=cb),tj='<{}#',n=n),pd.pascii.format(pl=pd.ds.format(db=db,tb=tb,cb=cb),tj='={}#',n=n), string.printable)
+            ch = self.binpart(ascii.format(pl=pd.ds.format(db=db,tb=tb,cb=cb),tj='<{}',end='#',n=n),ascii.format(pl=pd.ds.format(db=db,tb=tb,cb=cb),tj='={}',end='#',n=n), string.printable)
             tbname += ch
         return tbname

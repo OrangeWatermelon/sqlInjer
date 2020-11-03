@@ -10,9 +10,9 @@ var.INJERP = config.injerp
 var.RIGHTF = config.rightf
 
 t = test()
-# res = t.CurDB()
+res = t.CurDB()
 # res = t.DBs()
 # res = t.TBs('security')
 # res = t.CBs('security','users')
-res = t.Ds('security','users','id')
+# res = t.Ds('security','users','id')
 print(res)
